@@ -29,7 +29,7 @@ categories: game
 | 품질 목표 | 결정론적 규칙, 키보드 접근성, 반응형 UI, 장애 시 계속 플레이 |
 | 배포 | 저장소 하위 경로를 사용하는 정적 [GitHub Pages](https://docs.github.com/pages) |
 
-![일시정지 상태의 Snake 게임 실행 화면](./images/snake-game/gameplay.jpg)
+![일시정지 상태의 Snake 게임 실행 화면](/assets/snake-game/gameplay.jpg)
 
 기술 스택은 [TypeScript](https://www.typescriptlang.org/), [Phaser](https://phaser.io/), [Vite](https://vite.dev/), [Vitest](https://vitest.dev/), [Playwright](https://playwright.dev/)로 구성했다. MVP 단계에 집중하기 위해 외부 아트 자산, 원격 폰트, 분석 SDK, 런타임 네트워크 API는 제외했다. 또한 로컬 저장소, 오디오, 화면 효과 등 환경에 의존적인 기능이 실패하더라도 게임의 핵심 루프는 멈추지 않도록 설계했다.
 
@@ -71,7 +71,7 @@ categories: game
 
 의존성의 중심에는 Phaser나 DOM이 아닌, **순수 TypeScript로 작성된 도메인 모델**이 존재한다.
 
-![도메인 관련 사용자 명령은 dispatch 경로로, Phaser 프레임 delta는 별도 고정 틱 경로로 처리되는 Snake 게임 아키텍처](./images/snake-game/architecture.svg)
+![도메인 관련 사용자 명령은 dispatch 경로로, Phaser 프레임 delta는 별도 고정 틱 경로로 처리되는 Snake 게임 아키텍처](/assets/snake-game/architecture.svg)
 
 ### 1. 렌더링과 독립적인 순수 도메인
 핵심 로직([snake-simulation.ts](https://github.com/dragoncowkarma/snake-game/blob/main/src/domain/snake-simulation.ts))은 현재 상태, 사용자 명령, 주입된 난수를 입력받아 새로운 상태를 반환한다. Phaser 객체나 DOM의 존재를 전혀 알지 못하므로, 브라우저가 없는 Node 환경에서도 결정론적으로 규칙을 테스트할 수 있다.

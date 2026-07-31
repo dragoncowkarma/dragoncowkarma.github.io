@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-07-31T12:54:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">dragoncowkarma</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Snake Game</title><link href="http://localhost:4000/game/2026/07/31/snake-game.html" rel="alternate" type="text/html" title="Snake Game" /><published>2026-07-31T12:53:00+09:00</published><updated>2026-07-31T12:53:00+09:00</updated><id>http://localhost:4000/game/2026/07/31/snake-game</id><content type="html" xml:base="http://localhost:4000/game/2026/07/31/snake-game.html"><![CDATA[<h1 id="세-ai와-함께-만든-브라우저-snake-게임-개발기-규칙-아키텍처-그리고-qa">세 AI와 함께 만든 브라우저 Snake 게임 개발기: 규칙, 아키텍처, 그리고 QA</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-07-31T14:15:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">dragoncowkarma</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Snake Game</title><link href="http://localhost:4000/game/2026/07/31/snake-game.html" rel="alternate" type="text/html" title="Snake Game" /><published>2026-07-31T12:53:00+09:00</published><updated>2026-07-31T12:53:00+09:00</updated><id>http://localhost:4000/game/2026/07/31/snake-game</id><content type="html" xml:base="http://localhost:4000/game/2026/07/31/snake-game.html"><![CDATA[<h1 id="세-ai와-함께-만든-브라우저-snake-게임-개발기-규칙-아키텍처-그리고-qa">세 AI와 함께 만든 브라우저 Snake 게임 개발기: 규칙, 아키텍처, 그리고 QA</h1>
 
 <p><a href="https://dragoncowkarma.github.io/snake-game/">게임 플레이</a> · <a href="https://github.com/dragoncowkarma/snake-game">GitHub 저장소</a> · <a href="https://dragoncowkarma.github.io/snake-game/release.json">배포 소스 정보</a></p>
 
@@ -51,7 +51,7 @@
   </tbody>
 </table>
 
-<p><img src="./images/snake-game/gameplay.jpg" alt="일시정지 상태의 Snake 게임 실행 화면" /></p>
+<p><img src="/assets/snake-game/gameplay.jpg" alt="일시정지 상태의 Snake 게임 실행 화면" /></p>
 
 <p>기술 스택은 <a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://phaser.io/">Phaser</a>, <a href="https://vite.dev/">Vite</a>, <a href="https://vitest.dev/">Vitest</a>, <a href="https://playwright.dev/">Playwright</a>로 구성했다. MVP 단계에 집중하기 위해 외부 아트 자산, 원격 폰트, 분석 SDK, 런타임 네트워크 API는 제외했다. 또한 로컬 저장소, 오디오, 화면 효과 등 환경에 의존적인 기능이 실패하더라도 게임의 핵심 루프는 멈추지 않도록 설계했다.</p>
 
@@ -145,7 +145,7 @@
 
 <p>의존성의 중심에는 Phaser나 DOM이 아닌, <strong>순수 TypeScript로 작성된 도메인 모델</strong>이 존재한다.</p>
 
-<p><img src="./images/snake-game/architecture.svg" alt="도메인 관련 사용자 명령은 dispatch 경로로, Phaser 프레임 delta는 별도 고정 틱 경로로 처리되는 Snake 게임 아키텍처" /></p>
+<p><img src="/assets/snake-game/architecture.svg" alt="도메인 관련 사용자 명령은 dispatch 경로로, Phaser 프레임 delta는 별도 고정 틱 경로로 처리되는 Snake 게임 아키텍처" /></p>
 
 <h3 id="1-렌더링과-독립적인-순수-도메인">1. 렌더링과 독립적인 순수 도메인</h3>
 <p>핵심 로직(<a href="https://github.com/dragoncowkarma/snake-game/blob/main/src/domain/snake-simulation.ts">snake-simulation.ts</a>)은 현재 상태, 사용자 명령, 주입된 난수를 입력받아 새로운 상태를 반환한다. Phaser 객체나 DOM의 존재를 전혀 알지 못하므로, 브라우저가 없는 Node 환경에서도 결정론적으로 규칙을 테스트할 수 있다.</p>

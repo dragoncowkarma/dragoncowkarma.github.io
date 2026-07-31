@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Snake 게임의 명령 경로와 시간 경로</title>
+  <desc id="desc">도메인 관련 사용자 명령은 공용 dispatch와 ApplicationRouter dispatch를 거쳐 도메인 함수로 전달된다. 일시정지와 재개는 ApplicationRouter가 처리하고, 음소거와 환경설정은 브라우저 어댑터가 처리한다. Phaser 프레임 delta는 ApplicationRouter advance와 고정 틱 스케줄러를 거쳐 도메인 step을 실행한다. ApplicationRouter가 발행한 상태와 이벤트는 Phaser Canvas와 DOM UI에 전달된다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+    <style>
+      .heading { font: 700 30px system-ui, sans-serif; fill: #0f172a; }
+      .lane { font: 700 18px system-ui, sans-serif; fill: #475569; }
+      .box-title { font: 700 20px system-ui, sans-serif; fill: #0f172a; }
+      .box-copy { font: 400 16px system-ui, sans-serif; fill: #334155; }
+      .flow { fill: none; stroke: #475569; stroke-width: 3; marker-end: url(#arrow); }
+      .branch { fill: none; stroke: #64748b; stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="760" rx="24" fill="#f8fafc" />
+  <text x="600" y="50" text-anchor="middle" class="heading">Snake 게임 아키텍처</text>
+
+  <text x="40" y="100" class="lane">명령 경로</text>
+
+  <rect x="40" y="120" width="180" height="105" rx="18" fill="#fef3c7" stroke="#d97706" stroke-width="2" />
+  <text x="130" y="160" text-anchor="middle" class="box-title">사용자 입력</text>
+  <text x="130" y="192" text-anchor="middle" class="box-copy">키보드 · 터치 · 버튼</text>
+
+  <rect x="275" y="120" width="190" height="105" rx="18" fill="#f1f5f9" stroke="#64748b" stroke-width="2" />
+  <text x="370" y="160" text-anchor="middle" class="box-title">공용 dispatch</text>
+  <text x="370" y="192" text-anchor="middle" class="box-copy">입력 경로 통합</text>
+
+  <rect x="520" y="120" width="235" height="105" rx="18" fill="#e2e8f0" stroke="#64748b" stroke-width="2" />
+  <text x="637" y="158" text-anchor="middle" class="box-title">ApplicationRouter</text>
+  <text x="637" y="190" text-anchor="middle" class="box-copy">명령 정책 · pause/resume</text>
+
+  <path d="M 220 172 H 275" class="flow" />
+  <path d="M 465 172 H 520" class="flow" />
+
+  <text x="40" y="285" class="lane">시간 경로</text>
+
+  <rect x="40" y="305" width="180" height="105" rx="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" />
+  <text x="130" y="345" text-anchor="middle" class="box-title">Phaser update</text>
+  <text x="130" y="377" text-anchor="middle" class="box-copy">프레임 delta</text>
+
+  <rect x="275" y="305" width="190" height="105" rx="18" fill="#e2e8f0" stroke="#64748b" stroke-width="2" />
+  <text x="370" y="343" text-anchor="middle" class="box-title">ApplicationRouter</text>
+  <text x="370" y="375" text-anchor="middle" class="box-copy">advance(delta)</text>
+
+  <rect x="520" y="305" width="235" height="105" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2" />
+  <text x="637" y="343" text-anchor="middle" class="box-title">고정 틱 스케줄러</text>
+  <text x="637" y="375" text-anchor="middle" class="box-copy">accumulator · step 제한</text>
+
+  <path d="M 220 357 H 275" class="flow" />
+  <path d="M 465 357 H 520" class="flow" />
+
+  <rect x="830" y="120" width="320" height="290" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+  <text x="990" y="165" text-anchor="middle" class="box-title">순수 TypeScript 도메인</text>
+  <text x="990" y="207" text-anchor="middle" class="box-copy">도메인 명령: reset · direction</text>
+  <text x="990" y="239" text-anchor="middle" class="box-copy">시간: step</text>
+  <text x="990" y="291" text-anchor="middle" class="box-copy">이동 · 입력 큐 · 충돌 · 성장</text>
+  <text x="990" y="323" text-anchor="middle" class="box-copy">점수 · 난수 · 종료</text>
+  <text x="990" y="375" text-anchor="middle" class="box-copy">새 상태와 이벤트 반환</text>
+
+  <path d="M 755 172 H 830" class="flow" />
+  <path d="M 755 357 H 830" class="flow" />
+  <text x="792" y="154" text-anchor="middle" class="box-copy">규칙 전이</text>
+
+  <rect x="275" y="500" width="235" height="105" rx="18" fill="#f1f5f9" stroke="#64748b" stroke-width="2" />
+  <text x="392" y="540" text-anchor="middle" class="box-title">브라우저 어댑터</text>
+  <text x="392" y="572" text-anchor="middle" class="box-copy">환경설정 · 음소거 · 오디오</text>
+  <path d="M 370 225 V 500" class="branch" />
+
+  <rect x="830" y="450" width="320" height="75" rx="18" fill="#e2e8f0" stroke="#64748b" stroke-width="2" />
+  <text x="990" y="480" text-anchor="middle" class="box-title">ApplicationRouter publish</text>
+  <text x="990" y="507" text-anchor="middle" class="box-copy">상태 · 이벤트 발행</text>
+  <path d="M 990 410 V 450" class="branch" />
+
+  <rect x="610" y="585" width="235" height="105" rx="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" />
+  <text x="727" y="625" text-anchor="middle" class="box-title">Phaser Canvas</text>
+  <text x="727" y="657" text-anchor="middle" class="box-copy">보드 렌더링</text>
+
+  <rect x="915" y="585" width="235" height="105" rx="18" fill="#fee2e2" stroke="#dc2626" stroke-width="2" />
+  <text x="1032" y="625" text-anchor="middle" class="box-title">DOM UI</text>
+  <text x="1032" y="657" text-anchor="middle" class="box-copy">HUD · 상태 · 버튼</text>
+
+  <path d="M 990 525 V 550 H 727 V 585" class="branch" />
+  <path d="M 990 525 V 585" class="branch" />
+</svg>
